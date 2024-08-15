@@ -1,0 +1,12 @@
+﻿  ComandsHandler.cpp
+  Console.cpp
+C:\Users\Jordan Pryor\Documents\GitHub\The-Abyss\Console.cpp(64,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Game.cpp
+  Input.cpp
+C:\Users\Jordan Pryor\Documents\GitHub\The-Abyss\Input.cpp(63,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Locations.cpp
+  main.cpp
+  Player.cpp
+  Generating Code...
+Game.obj : error LNK2019: unresolved external symbol "private: void __cdecl Game::displaySplashScreen(void)" (?displaySplashScreen@Game@@AEAAXXZ) referenced in function "public: void __cdecl Game::run(void)" (?run@Game@@QEAAXXZ)
+C:\Users\Jordan Pryor\Documents\GitHub\The-Abyss\x64\Debug\The-Abyss.exe : fatal error LNK1120: 1 unresolved externals

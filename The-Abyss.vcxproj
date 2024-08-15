@@ -138,13 +138,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandsHandler.h" />
+    <ClInclude Include="Console.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Locations.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ComandsHandler.cpp" />
+    <ClCompile Include="Console.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Locations.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />

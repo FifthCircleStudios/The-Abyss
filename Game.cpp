@@ -4,6 +4,8 @@
 #include <thread>   // For std::this_thread::sleep_for()
 #include <chrono>   // For std::chrono::seconds
 #include <windows.h>
+
+#include "Console.h"
 #include "Locations.h"
 
 // Clear the console screen
@@ -15,19 +17,54 @@ void clearScreen() {
 #endif
 }
 
-// Display a splash screen
-void Game::displaySplashScreen() {
-    // Clear the screen
-    clearScreen();
+void displaySplashScreen() {
+    Console::ResizeWindow(150, 30);
+    Console::Clear();
 
-    // Splash screen animation
-    std::cout << "Fifth Circle Studios" << std::endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));  // Pause to simulate flashing effect
-    clearScreen();
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));  // Pause again
+    // Colors for the rainbow effect
+    ConsoleColor rainbowColors[] = {
+        ConsoleColor::Red,
+        ConsoleColor::Yellow,
+        ConsoleColor::Green,
+        ConsoleColor::Cyan,
+        ConsoleColor::Blue,
+        ConsoleColor::Magenta,
+        ConsoleColor::White
+    };
+    const int numColors = sizeof(rainbowColors) / sizeof(rainbowColors[0]);
 
-    // Clear the splash screen
-    clearScreen();
+    const std::string textLines[] = {
+        "**************************",
+        "* Fifth Circle Developments *",
+        "**************************"
+    };
+
+    // Calculate the number of iterations to last 2.5 seconds
+    const int durationMs = 2500; // 2.5 seconds
+    const int delayMs = 100;     // 100 milliseconds delay
+    const int iterations = durationMs / delayMs;
+
+    // Display text with rainbow effect
+    for (int i = 0; i < iterations; ++i) {
+        Console::Clear();
+
+        // Cycle through colors and display text
+        for (size_t j = 0; j < sizeof(textLines) / sizeof(textLines[0]); ++j) {
+            Console::SetForegroundColor(rainbowColors[(i + j) % numColors]);
+            Console::WriteCentered(textLines[j], rainbowColors[(i + j) % numColors]);
+        }
+
+        // Delay to create the flashing effect
+        std::this_thread::sleep_for(std::chrono::milliseconds(delayMs));
+    }
+
+    // Ensure the text is displayed in the final color
+    Console::SetForegroundColor(ConsoleColor::White);
+    Console::Clear();
+    for (const auto& line : textLines) {
+        Console::WriteCentered(line, ConsoleColor::White);
+    }
+    Console::Clear();
 }
 
 // Show the main menu
